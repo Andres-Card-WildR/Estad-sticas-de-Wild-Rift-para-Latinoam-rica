@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2025 ANDRES CARDENAS DORADO
+Copyright (c) 2025 ANDRES DAVID CARDENAS DORADO
 
 Se prohíbe expresamente:
 - Copiar la estructura, diseño o funcionalidad única
