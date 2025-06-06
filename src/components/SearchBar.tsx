@@ -1,36 +1,25 @@
-// src/components/SearchBar.tsx
-import React from 'react';
+import React, { useState } from 'react';
 
-// Definimos las "props" (datos que recibe el componente)
 interface SearchBarProps {
-  onSearch: (searchTerm: string) => void;
+  onSearch: (term: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-  const [inputValue, setInputValue] = React.useState('');
+const SearchBar = ({ onSearch }: SearchBarProps) => {
+  const [inputValue, setInputValue] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value; // Lo que el usuario escriba
-    setInputValue(value); // Guardamos el valor
-    onSearch(value); // Pasamos el valor al componente padre
+    const value = e.target.value;
+    setInputValue(value);
+    onSearch(value);
   };
 
   return (
-    <div style={{ margin: '20px 0' }}>
-      <input
-        type="text"
-        placeholder="Buscar campeones..."
-        value={inputValue}
-        onChange={handleChange}
-        style={{
-          padding: '10px',
-          width: '100%',
-          fontSize: '16px',
-          borderRadius: '5px',
-          border: '2px solid #ccc'
-        }}
-      />
-    </div>
+    <input 
+      type="text"
+      placeholder="Buscar campeones..."
+      value={inputValue}
+      onChange={handleChange}
+    />
   );
 };
 
