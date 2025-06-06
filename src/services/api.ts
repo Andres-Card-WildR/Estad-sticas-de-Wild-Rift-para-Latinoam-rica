@@ -1,19 +1,20 @@
+// src/services/api.ts
 import axios from 'axios';
 
-// ✅ Correcto: La clave se lee desde .env
-const RIOT_API_KEY = process.env.REACT_APP_RIOT_API_KEY;
+// Define el tipo de respuesta esperada
+interface RiotResponse {
+  freeChampionIds: number[];
+}
 
-// Ejemplo de función para obtener campeones
-export const getChampions = async () => {
+const API_URL = 'http://localhost:3001/api';
+
+export const getChampions = async (): Promise<number[]> => {
   try {
-    const response = await axios.get(
-      `https://la2.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=${RIOT_API_KEY}`
-    );
-    return response.data;
+    const response = await axios.get<RiotResponse>(`${API_URL}/champions`);
+    return response.data.freeChampionIds; // Ahora TypeScript sabe que es un array de números
   } catch (error) {
-    console.error("Error fetching champions:", error);
-    throw error;
+    console.error("Error al obtener campeones:", error);
+    const mockData = await import('../data/mockChampions');
+    return mockData.default.map(champ => champ.id);
   }
 };
-
-// Añade más funciones según necesites (getItems, getMatches, etc.)
