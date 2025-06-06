@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 const app = express();
+
 app.use(cors()); // 2. Permite la entrada a todos (en desarrollo)
 const PORT = 3001;
 

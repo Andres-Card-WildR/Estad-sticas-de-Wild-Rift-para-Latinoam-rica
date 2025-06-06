@@ -10,15 +10,20 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
-    onSearch(value);
+    onSearch(value); // Pasa el término de búsqueda al componente padre
   };
 
   return (
-    <input 
+    <input
       type="text"
-      placeholder="Buscar campeones..."
+      placeholder="Buscar por nombre o rol..."
       value={inputValue}
       onChange={handleChange}
+      style={{
+        padding: '10px',
+        width: '100%',
+        marginBottom: '20px'
+      }}
     />
   );
 };
